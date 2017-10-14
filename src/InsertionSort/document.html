@@ -1,0 +1,171 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/ xhtml1/DTD/xhtml1-strict.dtd">
+
+<html>
+
+<head>
+
+<title>INSERTION SORT (Java, C++) |  Algorithms and Data Structures</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta http-equiv="Content-Language" content="en-us" />
+
+<meta name="keywords" content="" />
+
+<meta name="description" content="Insertion sort. Complexity analysis. Java and C++ code snippets." />
+
+<link rel="stylesheet" href="/style2.css" type="text/css" />
+
+   
+
+
+
+
+
+    <style type="text/css">
+
+<!--
+
+
+
+.table1 {
+
+  
+
+  margin: 0px 0 1em 0;
+
+  caption-side: top;
+
+  background-color:#F5F5F5;
+
+}
+
+
+
+.td1 {
+
+  border: 1px solid #cccccc;
+
+}
+
+
+
+.td2 {
+
+  border: 1px none #cccccc;
+
+}
+
+
+
+.style_sup_new {
+
+  color: #993300;
+
+  font-weight: bold;
+
+}
+
+
+
+-->
+
+    </style>
+
+</head>
+
+<body>
+
+
+
+        <style type="text/css">
+<!--
+p.MsoNormal {
+margin:0cm;
+margin-bottom:.0001pt;
+font-size:12.0pt;
+font-family:"Times New Roman";
+}
+.style1 {
+	color: #70B272;
+	font-weight: bold;
+}
+.style2 {
+	color: #D15468;
+	font-weight: bold;
+}
+.style3 {color: #0000FF}
+-->
+</style>
+<h1>Insertion Sort</h1>
+<p>Insertion sort belongs to the O(n<sup>2</sup>)  sorting algorithms. Unlike many sorting algorithms with quadratic complexity, it is actually applied in practice for sorting small arrays of data. For instance, it is used to improve <a href="Quicksort">quicksort routine</a>. Some sources notice, that people use same algorithm ordering items, for example, hand of cards.</p>
+<h2>Algorithm</h2>
+<p>Insertion sort algorithm somewhat resembles <a href="Selection_sort">selection sort</a>. Array is imaginary divided into two parts - <span class="style1">sorted one</span> and <span class="style2">unsorted one</span>. At the beginning, <span class="style1">sorted part</span> contains <strong>first element</strong> of the array and <span class="style2">unsorted one</span> contains the rest. At every step, algorithm takes <strong>first element</strong> in the <span class="style2">unsorted part</span> and <strong>inserts</strong> it to the right place of the<span class="style1"> sorted one.</span> When <span class="style2">unsorted part</span> becomes <strong>empty</strong>, algorithm <em>stops</em>. Sketchy, insertion sort algorithm step looks like this:</p>
+<p><img src="insertion-sort-sketchy-before.png" alt="Insertion sort sketchy, before insertion"/></p>
+<p><strong>becomes</strong></p>
+<p><img src="/img/sorts/insertion-sort-sketchy-after.png" alt="Insertion sort sketchy, after insertion"/></p>
+<p>The idea of the sketch was originaly posted <a href="http://en.wikipedia.org/wiki/Insertion_sort">here</a>.</p>
+<p>Let us see an example of insertion sort routine to make the idea of algorithm clearer.
+<p class="style4"><em>Example. </em>Sort {7,  -5, 2, 16, 4} using insertion sort.</p>
+<p><img src="insertion-sort-1.png" alt="Insertion sort example"/></p>
+<h2>The ideas of insertion</h2>
+<p>The main operation of the algorithm is <strong>insertion</strong>. The task is to insert a value into the sorted part of the array. Let us see the variants of how we can do it.</p>
+<p><strong>&quot;Sifting down&quot; using swaps</strong></p>
+<p>The simplest way to insert next element into the sorted part is to sift it down, until it occupies correct position. <span style="font-family:'Times New Roman'; font-size:12.0pt; ">Initially </span> the element stays right after the sorted part. At each step algorithm compares the element with one before it and, if they stay in reversed order, swap them. Let us see an illustration.</p>
+<p><img src="insertion-sort-sift-down.png" alt="insertion sort, sift down illustration"></img></p>
+<p>This approach  writes sifted element to temporary position many times. Next implementation eliminates those unnecessary writes.</p>
+<h3>Shifting instead of swapping</h3>
+<p>We can modify previous algorithm, so it will write sifted element only to the final correct position. Let us see an illustration.</p>
+<p><img src="insertion-sort-shifting.png" alt="insertion sort, shifting illustration"></img></p>
+<p>It is the most commonly used modification of the insertion sort.</p>
+<h3>Using binary search</h3>
+<p><span style="color:#000000;">It is reasonable</span> to use <a href="/Algorithms/Binary_search">binary search algorithm</a> to find a proper place for insertion. This variant of the insertion sort is called <strong>binary insertion sort</strong>. After position for insertion is found, algorithm shifts the part of the array and inserts the element. This version has lower number of comparisons, but overall average complexity remains O(n<sup>2</sup>). From a practical point of view this improvement is not very important, because insertion sort is used on quite small data sets.</p>
+<h2>Complexity analysis</h2>
+<p>Insertion sort's overall complexity is O(n<sup>2</sup>) on average, regardless   of the method of insertion. On the almost sorted arrays insertion sort shows better performance, up to O(n) in case of applying insertion sort to a sorted array. Number of writes is O(n<sup>2</sup>) on average, but number of comparisons may vary depending on the insertion algorithm. It is O(n<sup>2</sup>) when shifting or swapping methods are used and O(n log n) for binary insertion sort.</p>
+<p>From the point of view of practical application, an average complexity of the insertion sort is not so important. As it was mentioned above, insertion sort is applied to quite small data sets (from 8 to 12 elements). Therefore, first of all, a &quot;practical performance&quot; should be considered. In practice insertion sort outperforms most of the quadratic sorting algorithms, like <a href="Selection_sort">selection sort</a> or <a href="Bubble_sort">bubble sort</a>.</p>
+<h2>Insertion sort properties</h2>
+<ul>
+  <li>adaptive (performance adapts to the initial order of elements);</li>
+  <li>stable (insertion sort retains relative order of the same elements);</li>
+  <li>in-place (requires constant amount of additional space);</li>
+  <li>online (new elements can be added during the sort).</li>
+</ul>
+<h2>Code snippets</h2>
+<p>We show the idea of insertion with shifts in Java implementation and the idea of insertion using swaps in the C++ code snippet.</p>
+<h3>Java implementation</h3>
+<p class="MsoNormal" style="text-autospace:none;"><strong><span style="font-family:'Courier New'; font-size:10.0pt; color:#7F0055; ">void</span></strong><span style="font-family:'Courier New'; font-size:10.0pt; color:black; "> insertionSort(</span><strong><span style="font-family:'Courier New'; font-size:10.0pt; color:#7F0055; ">int</span></strong><span style="font-family:'Courier New'; font-size:10.0pt; color:black; ">[] arr) {</span><span style="font-family:'Courier New'; font-size:10.0pt; "> </span></p>
+<p class="MsoNormal" style="text-autospace:none;"><span style="font-family:'Courier New'; font-size:10.0pt; color:black; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><strong><span style="font-family:'Courier New'; font-size:10.0pt; color:#7F0055; ">int</span></strong><span style="font-family:'Courier New'; font-size:10.0pt; color:black; "> i, j, newValue;</span><span style="font-family:'Courier New'; font-size:10.0pt; "> </span></p>
+<p class="MsoNormal" style="text-autospace:none;"><span style="font-family:'Courier New'; font-size:10.0pt; color:black; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><strong><span style="font-family:'Courier New'; font-size:10.0pt; color:#7F0055; ">for</span></strong><span style="font-family:'Courier New'; font-size:10.0pt; color:black; "> (i = 1; i &lt; arr.length; i++) {</span><span style="font-family:'Courier New'; font-size:10.0pt; "> </span></p>
+<p class="MsoNormal" style="text-autospace:none;"><span style="font-family:'Courier New'; font-size:10.0pt; color:black; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; newValue = arr[i];</span><span style="font-family:'Courier New'; font-size:10.0pt; "> </span></p>
+<p class="MsoNormal" style="text-autospace:none;"><span style="font-family:'Courier New'; font-size:10.0pt; color:black; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; j = i;</span><span style="font-family:'Courier New'; font-size:10.0pt; "> </span></p>
+<p class="MsoNormal" style="text-autospace:none;"><span style="font-family:'Courier New'; font-size:10.0pt; color:black; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><strong><span style="font-family:'Courier New'; font-size:10.0pt; color:#7F0055; ">while</span></strong><span style="font-family:'Courier New'; font-size:10.0pt; color:black; "> (j &gt; 0 &amp;&amp; arr[j - 1] &gt;  newValue) {</span><span style="font-family:'Courier New'; font-size:10.0pt; "> </span></p>
+<p class="MsoNormal" style="text-autospace:none;"><span style="font-family:'Courier New'; font-size:10.0pt; color:black; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; arr[j] = arr[j - 1];</span><span style="font-family:'Courier New'; font-size:10.0pt; "> </span></p>
+<p class="MsoNormal" style="text-autospace:none;"><span style="font-family:'Courier New'; font-size:10.0pt; color:black; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; j--;</span><span style="font-family:'Courier New'; font-size:10.0pt; "> </span></p>
+<p class="MsoNormal" style="text-autospace:none;"><span style="font-family:'Courier New'; font-size:10.0pt; color:black; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</span><span style="font-family:'Courier New'; font-size:10.0pt; "> </span></p>
+<p class="MsoNormal" style="text-autospace:none;"><span style="font-family:'Courier New'; font-size:10.0pt; color:black; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; arr[j] = newValue;</span><span style="font-family:'Courier New'; font-size:10.0pt; "> </span></p>
+<p class="MsoNormal" style="text-autospace:none;"><span style="font-family:'Courier New'; font-size:10.0pt; color:black; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</span><span style="font-family:'Courier New'; font-size:10.0pt; "> </span></p>
+<p class="MsoNormal"><span style="font-family:'Courier New'; font-size:10.0pt; color:black; ">}</span></p>
+<h3>C++ implementation</h3>
+<p class="MsoNormal" style="text-autospace:none;"><span style="font-family:'Courier New'; font-size:10.0pt; color:blue; ">void</span><span style="font-family:'Courier New'; font-size:10.0pt; "> <span style="color:#010001; ">insertionSort</span>(<span style="color:blue; ">int</span> <span style="color:#010001; ">arr</span>[], <span style="color:blue; ">int</span> <span style="color:#010001; ">length</span>) {</span></p>
+<p class="MsoNormal" style="text-autospace:none;"><span style="font-family:'Courier New'; font-size:10.0pt; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:blue; ">int</span> <span style="color:#010001; ">i</span>, <span style="color:#010001; ">j</span>, <span style="color:#010001; ">tmp</span>;</span></p>
+<p class="MsoNormal" style="text-autospace:none;"><span style="font-family:'Courier New'; font-size:10.0pt; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:blue; ">for</span> (<span style="color:#010001; ">i</span> = 1; <span style="color:#010001; ">i</span> &lt; <span style="color:#010001; ">length</span>; <span style="color:#010001; ">i</span>++) {</span></p>
+<p class="MsoNormal" style="text-autospace:none;"><span style="font-family:'Courier New'; font-size:10.0pt; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:#010001; ">j</span> = <span style="color:#010001; ">i</span>;</span></p>
+<p class="MsoNormal" style="text-autospace:none;"><span style="font-family:'Courier New'; font-size:10.0pt; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:blue; ">while</span> (<span style="color:#010001; ">j</span> &gt; 0  &amp;&amp; <span style="color:#010001; ">arr</span>[<span style="color:#010001; ">j</span> - 1] &gt; <span style="color:#010001; ">arr</span>[<span style="color:#010001; ">j</span>])  {</span></p>
+<p class="MsoNormal" style="text-autospace:none;"><span style="font-family:'Courier New'; font-size:10.0pt; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:#010001; ">tmp</span> = <span style="color:#010001; ">arr</span>[<span style="color:#010001; ">j</span>];</span></p>
+<p class="MsoNormal" style="text-autospace:none;"><span style="font-family:'Courier New'; font-size:10.0pt; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:#010001; ">arr</span>[<span style="color:#010001; ">j</span>] = <span style="color:#010001; ">arr</span>[<span style="color:#010001; ">j</span> - 1];</span></p>
+<p class="MsoNormal" style="text-autospace:none;"><span style="font-family:'Courier New'; font-size:10.0pt; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:#010001; ">arr</span>[<span style="color:#010001; ">j</span> - 1] = <span style="color:#010001; ">tmp</span>;</span></p>
+<p class="MsoNormal" style="text-autospace:none;"><span style="font-family:'Courier New'; font-size:10.0pt; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:#010001; ">j</span>--;</span></p>
+<p class="MsoNormal" style="text-autospace:none;"><span style="font-family:'Courier New'; font-size:10.0pt; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</span></p>
+<p class="MsoNormal" style="text-autospace:none;"><span style="font-family:'Courier New'; font-size:10.0pt; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</span></p>
+<p class="MsoNormal" style="text-autospace:none;"><span style="font-family:'Courier New'; font-size:10.0pt; ">}</span></p>
+
+     
+
+
+
+
+  </body>
+
+</html>

@@ -1,0 +1,163 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/ xhtml1/DTD/xhtml1-strict.dtd">
+
+<html>
+
+<head>
+
+<title>BUBBLE SORT (Java, C++) |  Algorithms and Data Structures</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta http-equiv="Content-Language" content="en-us" />
+
+<meta name="keywords" content="" />
+
+<meta name="description" content="Bubble sort tutorial. Complexity analysis. Turtles and rabbits problem. Java and C++ code snippets." />
+
+<link rel="stylesheet" href="/style2.css" type="text/css" />
+
+   
+
+    <style type="text/css">
+
+<!--
+
+
+
+.table1 {
+
+  
+
+  margin: 0px 0 1em 0;
+
+  caption-side: top;
+
+  background-color:#F5F5F5;
+
+}
+
+
+
+.td1 {
+
+  border: 1px solid #cccccc;
+
+}
+
+
+
+.td2 {
+
+  border: 1px none #cccccc;
+
+}
+
+
+
+.style_sup_new {
+
+  color: #993300;
+
+  font-weight: bold;
+
+}
+
+
+
+-->
+
+    </style>
+
+</head>
+
+<body>
+
+
+
+
+
+<table style="background-color:#F5F5F5; margin-left:auto; margin-right:auto;"><tr><td>
+
+
+
+
+        <style type="text/css">
+<!--
+p.MsoNormal {
+margin:0cm;
+margin-bottom:.0001pt;
+font-size:12.0pt;
+font-family:"Times New Roman";
+}
+.style4 {font-family: "Times New Roman", Times, serif}
+-->
+</style>
+
+<h1>Bubble  Sort</h1>
+<p>Bubble sort  is a simple and well-known sorting algorithm. It is used in practice once in a blue moon and its main application is to make an introduction to the sorting algorithms. Bubble sort belongs to O(n<sup>2</sup>)  sorting algorithms, which makes it quite inefficient for sorting large data volumes. Bubble sort is <strong>stable</strong> and <strong>adaptive</strong>.</p>
+<h2>Algorithm</h2>
+<ol>
+  <li>Compare each pair of adjacent elements from the beginning of an array and, if they are in reversed order, swap them.</li>
+  <li>If at least one swap has been done, repeat step 1.</li>
+</ol>
+<p>You can imagine that on every step big bubbles float to the surface and stay there. At the step, when no bubble moves,  sorting stops. Let us see an example of sorting an array to make the idea of bubble sort clearer.</p>
+<p class="style4"><em>Example. </em>Sort {5, 1, 12, -5, 16} using bubble sort.</p>
+<p><img src="bubble-sort-2.png" alt="Bubble sort example"/></p>
+<h2 id="complexity_analysis">Complexity analysis</h2>
+<p>Average and worst case complexity of bubble sort is O(n<sup>2</sup>). Also, it makes O(n<sup>2</sup>) swaps in the worst case. Bubble sort is adaptive. It means that for almost sorted array it  gives O(n) estimation. Avoid implementations, which don't check if the array is already sorted on every step (any swaps made). This check is <span style="font-family:'Times New Roman'; font-size:12.0pt; ">necessary</span>, in order to preserve adaptive property.</p>
+<h3>Turtles and rabbits</h3>
+<p>
+One more problem of bubble sort is that its running time badly depends on the initial order of the elements. Big elements (rabbits) go up fast, while small ones (turtles) go down very slow. This problem is solved in the <span style="font-family:'Times New Roman'; font-size:12.0pt; ">Cocktail </span> sort.</p>
+<p><strong>Turtle example. </strong> Thought, array {2, 3, 4, 5, 1} is almost sorted, it takes O(n<sup>2</sup>) iterations to sort an array. Element {1} is a turtle.</p>
+<p>
+<img src="bubble-sort-2 (1).png" alt="Turtle example"/></p>
+<p><strong>Rabbit example. </strong> Array {6, 1, 2, 3, 4, 5} is almost sorted too, but it takes O(n) iterations to sort it. Element {6} is a rabbit. This example demonstrates adaptive property of the bubble sort.</p>
+<p>
+<img src="bubble-sort-3.png" alt="Rabbit example"/></p>
+<h2>Code snippets</h2>
+<p>There are several ways to implement the bubble sort. Notice, that &quot;swaps&quot; check is absolutely necessary, in order to preserve adaptive property.</p>
+<h3>Java</h3>
+<p class="MsoNormal" style="text-autospace:none;"><strong><span style="font-family:'Courier New'; font-size:10.0pt; color:#7F0055; ">public</span></strong><span style="font-family:'Courier New'; font-size:10.0pt; color:black; "> </span><strong><span style="font-family:'Courier New'; font-size:10.0pt; color:#7F0055; ">void</span></strong><span style="font-family:'Courier New'; font-size:10.0pt; color:black; "> bubbleSort(</span><strong><span style="font-family:'Courier New'; font-size:10.0pt; color:#7F0055; ">int</span></strong><span style="font-family:'Courier New'; font-size:10.0pt; color:black; ">[] arr) {</span><span style="font-family:'Courier New'; font-size:10.0pt; "> </span></p>
+<p class="MsoNormal" style="text-autospace:none;"><span style="font-family:'Courier New'; font-size:10.0pt; color:black; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><strong><span style="font-family:'Courier New'; font-size:10.0pt; color:#7F0055; ">boolean</span></strong><span style="font-family:'Courier New'; font-size:10.0pt; color:black; "> swapped  = </span><strong><span style="font-family:'Courier New'; font-size:10.0pt; color:#7F0055; ">true</span></strong><span style="font-family:'Courier New'; font-size:10.0pt; color:black; ">;</span><span style="font-family:'Courier New'; font-size:10.0pt; "> </span></p>
+<p class="MsoNormal" style="text-autospace:none;"><span style="font-family:'Courier New'; font-size:10.0pt; color:black; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><strong><span style="font-family:'Courier New'; font-size:10.0pt; color:#7F0055; ">int</span></strong><span style="font-family:'Courier New'; font-size:10.0pt; color:black; "> j = 0;</span><span style="font-family:'Courier New'; font-size:10.0pt; "> </span></p>
+<p class="MsoNormal" style="text-autospace:none;"><span style="font-family:'Courier New'; font-size:10.0pt; color:black; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><strong><span style="font-family:'Courier New'; font-size:10.0pt; color:#7F0055; ">int</span></strong><span style="font-family:'Courier New'; font-size:10.0pt; color:black; "> tmp;</span><span style="font-family:'Courier New'; font-size:10.0pt; "> </span></p>
+<p class="MsoNormal" style="text-autospace:none;"><span style="font-family:'Courier New'; font-size:10.0pt; color:black; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><strong><span style="font-family:'Courier New'; font-size:10.0pt; color:#7F0055; ">while</span></strong><span style="font-family:'Courier New'; font-size:10.0pt; color:black; "> (swapped) {</span><span style="font-family:'Courier New'; font-size:10.0pt; "> </span></p>
+<p class="MsoNormal" style="text-autospace:none;"><span style="font-family:'Courier New'; font-size:10.0pt; color:black; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; swapped  = </span><strong><span style="font-family:'Courier New'; font-size:10.0pt; color:#7F0055; ">false</span></strong><span style="font-family:'Courier New'; font-size:10.0pt; color:black; ">;</span><span style="font-family:'Courier New'; font-size:10.0pt; "> </span></p>
+<p class="MsoNormal" style="text-autospace:none;"><span style="font-family:'Courier New'; font-size:10.0pt; color:black; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; j++;</span><span style="font-family:'Courier New'; font-size:10.0pt; "> </span></p>
+<p class="MsoNormal" style="text-autospace:none;"><span style="font-family:'Courier New'; font-size:10.0pt; color:black; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><strong><span style="font-family:'Courier New'; font-size:10.0pt; color:#7F0055; ">for</span></strong><span style="font-family:'Courier New'; font-size:10.0pt; color:black; "> (</span><strong><span style="font-family:'Courier New'; font-size:10.0pt; color:#7F0055; ">int</span></strong><span style="font-family:'Courier New'; font-size:10.0pt; color:black; "> i = 0; i &lt;  arr.length - j; i++) {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-family:'Courier New'; font-size:10.0pt; "> </span></p>
+<p class="MsoNormal" style="text-autospace:none;"><span style="font-family:'Courier New'; font-size:10.0pt; color:black; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><strong><span style="font-family:'Courier New'; font-size:10.0pt; color:#7F0055; ">if</span></strong><span style="font-family:'Courier New'; font-size:10.0pt; color:black; "> (arr[i] &gt;  arr[i + 1]) {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-family:'Courier New'; font-size:10.0pt; "> </span></p>
+<p class="MsoNormal" style="text-autospace:none;"><span style="font-family:'Courier New'; font-size:10.0pt; color:black; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tmp  = arr[i];</span><span style="font-family:'Courier New'; font-size:10.0pt; "> </span></p>
+<p class="MsoNormal" style="text-autospace:none;"><span style="font-family:'Courier New'; font-size:10.0pt; color:black; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; arr[i]  = arr[i + 1];</span><span style="font-family:'Courier New'; font-size:10.0pt; "> </span></p>
+<p class="MsoNormal" style="text-autospace:none;"><span style="font-family:'Courier New'; font-size:10.0pt; color:black; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; arr[i  + 1] = tmp;</span><span style="font-family:'Courier New'; font-size:10.0pt; "> </span></p>
+<p class="MsoNormal" style="text-autospace:none;"><span style="font-family:'Courier New'; font-size:10.0pt; color:black; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; swapped  = </span><strong><span style="font-family:'Courier New'; font-size:10.0pt; color:#7F0055; ">true</span></strong><span style="font-family:'Courier New'; font-size:10.0pt; color:black; ">;</span><span style="font-family:'Courier New'; font-size:10.0pt; "> </span></p>
+<p class="MsoNormal" style="text-autospace:none;"><span style="font-family:'Courier New'; font-size:10.0pt; color:black; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-family:'Courier New'; font-size:10.0pt; color:black; ">}</span><span style="font-family:'Courier New'; font-size:10.0pt; "> </span></p>
+<p class="MsoNormal" style="text-autospace:none;"><span style="font-family:'Courier New'; font-size:10.0pt; color:black; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-family:'Courier New'; font-size:10.0pt; "> </span></p>
+<p class="MsoNormal" style="text-autospace:none;"><span style="font-family:'Courier New'; font-size:10.0pt; color:black; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</span><span style="font-family:'Courier New'; font-size:10.0pt; "> </span></p>
+<p class="MsoNormal" style="text-autospace:none;"><span style="font-family:'Courier New'; font-size:10.0pt; color:black; ">}</span><span style="font-family:'Courier New'; font-size:10.0pt; "> </span></p>
+<h3>C++</h3>
+<p class="MsoNormal" style="text-autospace:none;"><span style="font-family:'Courier New'; font-size:10.0pt; color:blue; ">void</span><span style="font-family:'Courier New'; font-size:10.0pt; "> <span style="color:#010001; ">bubbleSort</span>(<span style="color:blue; ">int</span> <span style="color:#010001; ">arr</span>[], <span style="color:blue; ">int</span> <span style="color:#010001; ">n</span>) {</span></p>
+<p class="MsoNormal" style="text-autospace:none;"><span style="font-family:'Courier New'; font-size:10.0pt; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:blue; ">bool</span> <span style="color:#010001; ">swapped</span> = <span style="color:blue; ">true</span>;</span></p>
+<p class="MsoNormal" style="text-autospace:none;"><span style="font-family:'Courier New'; font-size:10.0pt; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:blue; ">int</span> <span style="color:#010001; ">j</span> = 0;</span></p>
+<p class="MsoNormal" style="text-autospace:none;"><span style="font-family:'Courier New'; font-size:10.0pt; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:blue; ">int</span> <span style="color:#010001; ">tmp</span>;</span></p>
+<p class="MsoNormal" style="text-autospace:none;"><span style="font-family:'Courier New'; font-size:10.0pt; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:blue; ">while</span> (<span style="color:#010001; ">swapped</span>) {</span></p>
+<p class="MsoNormal" style="text-autospace:none;"><span style="font-family:'Courier New'; font-size:10.0pt; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:#010001; ">swapped</span> = <span style="color:blue; ">false</span>;</span></p>
+<p class="MsoNormal" style="text-autospace:none;"><span style="font-family:'Courier New'; font-size:10.0pt; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:#010001; ">j</span>++;</span></p>
+<p class="MsoNormal" style="text-autospace:none;"><span style="font-family:'Courier New'; font-size:10.0pt; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:blue; ">for</span> (<span style="color:blue; ">int</span> <span style="color:#010001; ">i</span> = 0; <span style="color:#010001; ">i</span> &lt; <span style="color:#010001; ">n</span> - <span style="color:#010001; ">j</span>; <span style="color:#010001; ">i</span>++) {</span></p>
+<p class="MsoNormal" style="text-autospace:none;"><span style="font-family:'Courier New'; font-size:10.0pt; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:blue; ">if</span> (<span style="color:#010001; ">arr</span>[<span style="color:#010001; ">i</span>] &gt; <span style="color:#010001; ">arr</span>[<span style="color:#010001; ">i</span> + 1]) {</span></p>
+<p class="MsoNormal" style="text-autospace:none;"><span style="font-family:'Courier New'; font-size:10.0pt; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:#010001; ">tmp</span> = <span style="color:#010001; ">arr</span>[<span style="color:#010001; ">i</span>];</span></p>
+<p class="MsoNormal" style="text-autospace:none;"><span style="font-family:'Courier New'; font-size:10.0pt; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:#010001; ">arr</span>[<span style="color:#010001; ">i</span>] = <span style="color:#010001; ">arr</span>[<span style="color:#010001; ">i</span> + 1];</span></p>
+<p class="MsoNormal" style="text-autospace:none;"><span style="font-family:'Courier New'; font-size:10.0pt; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:#010001; ">arr</span>[<span style="color:#010001; ">i</span> + 1] = <span style="color:#010001; ">tmp</span>;</span></p>
+<p class="MsoNormal" style="text-autospace:none;"><span style="font-family:'Courier New'; font-size:10.0pt; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:#010001; ">swapped</span> = <span style="color:blue; ">true</span>;</span></p>
+<p class="MsoNormal" style="text-autospace:none;"><span style="font-family:'Courier New'; font-size:10.0pt; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-family:'Courier New'; font-size:10.0pt; ">}</span></p>
+<p class="MsoNormal" style="text-autospace:none;"><span style="font-family:'Courier New'; font-size:10.0pt; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</span></p>
+<p class="MsoNormal" style="text-autospace:none;"><span style="font-family:'Courier New'; font-size:10.0pt; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</span></p>
+<p class="MsoNormal"><span style="font-family:'Courier New'; font-size:10.0pt; ">}</span></p>
+
+
+
+
+  </body>
+
+</html>
